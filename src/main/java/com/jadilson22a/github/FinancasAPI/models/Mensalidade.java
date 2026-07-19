@@ -41,10 +41,25 @@ public class Mensalidade {
         this.mes = mes;
         this.ano = ano;
         this.dividas = dividas;
+        
+        if(dividas != null) {
+        	dividas.forEach(divida -> divida.setMensalidade(this));
+        }
     }
 	
+	public Mensalidade(Integer id, Mes mes, Integer ano, List<Divida> dividas) {
+		this.id = id;
+		this.mes = mes;
+		this.ano = ano;
+		this.dividas = dividas;
+		
+		if(dividas != null) {
+        	dividas.forEach(divida -> divida.setMensalidade(this));
+        }
+	}
+
 	public MensalidadeDTO toDTO() {
-		return new MensalidadeDTO(id, mes, ano, dividas);
+		return new MensalidadeDTO(id, mes.toString(), ano, dividas);
 	}
 
     public Integer getId() {
@@ -78,4 +93,11 @@ public class Mensalidade {
     public void setDividas(List<Divida> dividas) {
         this.dividas = dividas;
     }
+
+	@Override
+	public String toString() {
+		return "Mensalidade [id=" + id + ", mes=" + mes + ", ano=" + ano + ", dividas=" + dividas + "]";
+	}
+    
+    
 }

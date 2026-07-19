@@ -4,8 +4,12 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jadilson22a.github.FinancasAPI.dtos.DividaDTO;
+
 @Entity
 @Table(name = "dividas")
+@JsonIgnoreProperties(value = "mensalidade")
 public class Divida {
 
     @Id
@@ -26,7 +30,6 @@ public class Divida {
     private Mensalidade mensalidade;
 
 	public Divida(Integer id, String nome, Double valor, LocalDate dataVencimento, Mensalidade mensalidade) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.valor = valor;
@@ -34,7 +37,17 @@ public class Divida {
 		this.mensalidade = mensalidade;
 	}
 
+	public Divida(String nome, Double valor, LocalDate dataVencimento) {
+		this.nome = nome;
+		this.valor = valor;
+		this.dataVencimento = dataVencimento;
+	}
+
 	public Divida() {
+	}
+	
+	public DividaDTO toDTO() {
+		return new DividaDTO(id, nome, valor, dataVencimento);
 	}
 
 	public Integer getId() {

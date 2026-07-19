@@ -14,7 +14,16 @@ public enum Mes {
     outubro(10),
     novembro(11),
     dezembro(12);
+	
+	private final Integer digito;
 
-    Mes(int digito) {
+    Mes(Integer digito) {
+    	this.digito = digito;
     }
+
+	public Integer getDigito() {
+		return digito;
+	}
+    
+    
 }

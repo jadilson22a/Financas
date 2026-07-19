@@ -8,6 +8,6 @@ public interface CrudInterface<T, ID> {
 	void salvar(ID id,T entidade);
 	void excluir(ID entidade);
 	List<T> buscarTudo();
-	T buscarPorId(ID id);
+	T buscar(ID id);
 
 }
